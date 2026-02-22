@@ -1,0 +1,35 @@
+.editor-wrapper {
+  border: 1px solid var(--editor-border, #ccc);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  min-height: 120px;
+}
+
+.editor-content {
+  outline: none;
+}
+
+.editor-paragraph {
+  margin: 0 0 0.5em;
+}
+
+.editor-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.editor-text-bold {
+  font-weight: bold;
+}
+
+.editor-text-italic {
+  font-style: italic;
+}
+
+.editor-text-underline {
+  text-decoration: underline;
+}
+
+.editor-text-code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+}
