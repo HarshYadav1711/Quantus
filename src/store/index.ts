@@ -1,4 +1,2 @@
-/**
- * App state boundary. Add global state (e.g. Zustand slices, context) here.
- */
-export type AppState = Record<string, unknown>
+export { useEditorStore } from './editorStore'
+export { useUIStore, type ToolbarFormat } from './uiStore'

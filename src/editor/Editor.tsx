@@ -3,8 +3,9 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { EditorToolbar } from '@/components'
 import { editorConfig } from './editorConfig'
-import { InitialStatePlugin } from './plugins'
+import { EditorSyncPlugin, InitialStatePlugin, SelectionFormatPlugin } from './plugins'
 import './editor.css'
 
 /**
@@ -14,6 +15,7 @@ import './editor.css'
 export function Editor() {
   return (
     <LexicalComposer initialConfig={editorConfig}>
+      <EditorToolbar />
       <div className="editor-wrapper">
         <RichTextPlugin
           contentEditable={<ContentEditable className="editor-content" />}
@@ -22,6 +24,8 @@ export function Editor() {
         />
         <HistoryPlugin />
         <InitialStatePlugin />
+        <EditorSyncPlugin />
+        <SelectionFormatPlugin />
       </div>
     </LexicalComposer>
   )
