@@ -1,20 +1,14 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { FORMAT_TEXT_COMMAND } from 'lexical'
-import type { TextFormatType } from 'lexical'
-import { insertBlockMath, insertInlineMath } from '@/editor/math'
-import { insertTable } from '@/editor/table'
-import { useUIStore, type ToolbarFormat } from '@/store'
-
-const FORMATS: { key: keyof ToolbarFormat; label: string }[] = [
-  { key: 'bold', label: 'B' },
-  { key: 'italic', label: 'I' },
-  { key: 'underline', label: 'U' },
-  { key: 'code', label: 'Code' },
-]
+import {
+  applyFormat,
+  FORMAT_KEYS,
+  INSERT_ACTIONS,
+} from '@/editor/toolbarActions'
+import { useUIStore } from '@/store'
 
 /**
- * Toolbar that reflects selection format from the UI store and dispatches
- * format commands to the editor. Subscribes only to format slice to minimize re-renders.
+ * Thin layer over editor actions: triggers commands via toolbarActions,
+ * reflects format state from UI store. No business logic.
  */
 export function EditorToolbar() {
   const [editor] = useLexicalComposerContext()
@@ -22,40 +16,27 @@ export function EditorToolbar() {
 
   return (
     <div className="editor-toolbar" role="toolbar">
-      {FORMATS.map(({ key, label }) => (
+      {FORMAT_KEYS.map(({ key, label }) => (
         <button
           key={key}
           type="button"
           aria-pressed={format[key] ? 'true' : 'false'}
-          onClick={() =>
-            editor.dispatchCommand(FORMAT_TEXT_COMMAND, key as TextFormatType)
-          }
+          onClick={() => applyFormat(editor, key)}
         >
           {label}
         </button>
       ))}
       <span className="editor-toolbar-separator" aria-hidden />
-      <button
-        type="button"
-        onClick={() => insertTable(editor)}
-        title="Insert table"
-      >
-        Table
-      </button>
-      <button
-        type="button"
-        onClick={() => insertInlineMath(editor)}
-        title="Insert inline math"
-      >
-        Inline math
-      </button>
-      <button
-        type="button"
-        onClick={() => insertBlockMath(editor)}
-        title="Insert block math"
-      >
-        Block math
-      </button>
+      {INSERT_ACTIONS.map(({ id, label, title, run }) => (
+        <button
+          key={id}
+          type="button"
+          title={title}
+          onClick={() => run(editor)}
+        >
+          {label}
+        </button>
+      ))}
     </div>
   )
 }
