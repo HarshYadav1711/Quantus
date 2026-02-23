@@ -5,11 +5,7 @@ import { insertBlockMath, insertInlineMath } from './math'
 import { insertTable } from './table'
 import type { ToolbarFormat } from '@/store'
 
-/**
- * All toolbar-triggerable editor actions. Toolbar UI only calls these;
- * no editor commands or business logic in the toolbar component.
- */
-
+/** Toolbar-triggerable actions only. Toolbar imports this and calls run(editor); no logic in UI. */
 export const FORMAT_KEYS: { key: keyof ToolbarFormat; label: string }[] = [
   { key: 'bold', label: 'B' },
   { key: 'italic', label: 'I' },

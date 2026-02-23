@@ -1,6 +1,5 @@
 /**
- * Utility helpers. Add pure functions and shared logic here.
+ * Pure helpers only. No editor or store dependencies.
+ * Add shared logic here as needed.
  */
-export function cn(...classes: (string | undefined | false)[]): string {
-  return classes.filter(Boolean).join(' ')
-}
+export {}

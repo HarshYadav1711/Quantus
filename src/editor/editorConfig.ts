@@ -45,10 +45,8 @@ const editorNodes = [
 ]
 
 /**
- * Editor configuration: namespace, theme, error handling, nodes, and
- * initial state. Kept separate from UI so the same config can be
- * reused (e.g. headless or tests) and so the editor instance is
- * defined in one place.
+ * Single source of editor config. Separate from UI so config can be
+ * reused (e.g. headless or tests) and nodes are registered in one place.
  */
 export const editorConfig: InitialConfigType = {
   namespace: 'QuantusEditor',

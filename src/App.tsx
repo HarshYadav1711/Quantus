@@ -4,10 +4,7 @@ import { Editor } from '@/editor'
 import { useEditorStore } from '@/store'
 import { loadPersistedContent } from '@/persistence'
 
-/**
- * Loads persisted content into the store before mounting the editor,
- * so the editor can hydrate from contentToHydrate on first run.
- */
+/** Load from persistence into store so editor can hydrate on mount. */
 function useRestorePersistedContent() {
   const [ready, setReady] = useState(false)
   const loadContent = useEditorStore((s) => s.loadContent)

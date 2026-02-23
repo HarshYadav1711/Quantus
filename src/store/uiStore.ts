@@ -1,9 +1,6 @@
 import { create } from 'zustand'
 
-/**
- * Text format flags for toolbar. Mirrors selection format when the editor
- * has a range selection; otherwise reflects last known format or defaults.
- */
+/** Toolbar format state. Synced from selection by SelectionFormatPlugin. */
 export type ToolbarFormat = {
   bold: boolean
   italic: boolean
@@ -20,9 +17,7 @@ const defaultFormat: ToolbarFormat = {
 
 type UIStore = {
   format: ToolbarFormat
-  /** Update format (e.g. from selection). Partial updates to avoid full replace. */
   setFormat: (partial: Partial<ToolbarFormat>) => void
-  /** Reset format to defaults (e.g. when selection is collapsed or null). */
   resetFormat: () => void
 }
 

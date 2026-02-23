@@ -2,10 +2,7 @@ import type { PersistenceAdapter } from './types'
 
 const STORAGE_KEY = 'quantus-editor'
 
-/**
- * Persists serialized editor JSON to localStorage. Replace with an
- * API-backed adapter (e.g. persistence/apiAdapter.ts) when a backend exists.
- */
+/** localStorage adapter. Replace with API adapter when backend exists. */
 export function createLocalStorageAdapter(): PersistenceAdapter {
   return {
     async load() {

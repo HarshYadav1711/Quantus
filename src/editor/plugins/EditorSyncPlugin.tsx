@@ -1,15 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { useEditorStore } from '@/store/editorStore'
+import { useEditorStore } from '@/store'
 import { savePersistedContent } from '@/persistence'
 
 const SERIALIZE_DEBOUNCE_MS = 400
 
 /**
- * Syncs editor state to the editor store for persistence.
- * - On mount: if store has contentToHydrate, apply it to the editor and clear.
- * - On update: debounced write of serialized state to store (no component
- *   subscribes to that state, so no extra re-renders).
+ * Editor ↔ store sync for persistence. Mount: hydrate from store then clear.
+ * Updates: debounced serialize into store + persistence (no subscriber = no re-renders).
  */
 export function EditorSyncPlugin() {
   const [editor] = useLexicalComposerContext()

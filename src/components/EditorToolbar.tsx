@@ -6,10 +6,7 @@ import {
 } from '@/editor/toolbarActions'
 import { useUIStore } from '@/store'
 
-/**
- * Thin layer over editor actions: triggers commands via toolbarActions,
- * reflects format state from UI store. No business logic.
- */
+/** Triggers toolbarActions with current editor; format from UI store. No logic. */
 export function EditorToolbar() {
   const [editor] = useLexicalComposerContext()
   const format = useUIStore((s) => s.format)

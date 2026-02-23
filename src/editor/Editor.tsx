@@ -6,13 +6,10 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin'
 import { EditorToolbar } from '@/components'
 import { editorConfig } from './editorConfig'
-import { EditorSyncPlugin, InitialStatePlugin, SelectionFormatPlugin } from './plugins'
+import { EditorSyncPlugin, SelectionFormatPlugin } from './plugins'
 import './editor.css'
 
-/**
- * Editor UI only: composes LexicalComposer with shared config and
- * plugins. No editor configuration or DOM manipulation here.
- */
+/** Composes Lexical with config and plugins. No config or DOM logic here. */
 export function Editor() {
   return (
     <LexicalComposer initialConfig={editorConfig}>
@@ -25,7 +22,6 @@ export function Editor() {
         />
         <HistoryPlugin />
         <TablePlugin />
-        <InitialStatePlugin />
         <EditorSyncPlugin />
         <SelectionFormatPlugin />
       </div>

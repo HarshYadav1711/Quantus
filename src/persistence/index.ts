@@ -2,7 +2,7 @@ import { createLocalStorageAdapter } from './localStorageAdapter'
 
 export type { PersistenceAdapter } from './types'
 
-/** Single persistence instance. Swap implementation here when adding an API. */
+/** Editor content persistence. Single adapter; swap here for an API later. */
 const persistence = createLocalStorageAdapter()
 
 export const loadPersistedContent = (): Promise<string | null> =>

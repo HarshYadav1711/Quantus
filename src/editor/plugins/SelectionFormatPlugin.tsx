@@ -1,13 +1,9 @@
 import { useEffect } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $getSelection, $isRangeSelection } from 'lexical'
-import { useUIStore } from '@/store/uiStore'
+import { useUIStore } from '@/store'
 
-/**
- * Pushes selection format (bold, italic, underline, code) into the UI store
- * so the toolbar can reflect current selection. Only updates store when
- * selection is a range; otherwise resets format. No DOM manipulation.
- */
+/** Writes selection format into UI store for toolbar. Range → setFormat; else resetFormat. */
 export function SelectionFormatPlugin() {
   const [editor] = useLexicalComposerContext()
   const setFormat = useUIStore((s) => s.setFormat)
