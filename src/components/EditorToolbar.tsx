@@ -13,16 +13,27 @@ export function EditorToolbar() {
 
   return (
     <div className="editor-toolbar" role="toolbar">
-      {FORMAT_KEYS.map(({ key, label }) => (
-        <button
-          key={key}
-          type="button"
-          aria-pressed={format[key] ? 'true' : 'false'}
-          onClick={() => applyFormat(editor, key)}
-        >
-          {label}
-        </button>
-      ))}
+      {FORMAT_KEYS.map(({ key, label }) =>
+        format[key] ? (
+          <button
+            key={key}
+            type="button"
+            aria-pressed="true"
+            onClick={() => applyFormat(editor, key)}
+          >
+            {label}
+          </button>
+        ) : (
+          <button
+            key={key}
+            type="button"
+            aria-pressed="false"
+            onClick={() => applyFormat(editor, key)}
+          >
+            {label}
+          </button>
+        )
+      )}
       <span className="editor-toolbar-separator" aria-hidden />
       {INSERT_ACTIONS.map(({ id, label, title, run }) => (
         <button

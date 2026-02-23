@@ -65,6 +65,10 @@ export function MathDecorator({
       <span className="editor-math-edit">
         <input
           className="editor-math-input"
+          type="text"
+          aria-label="Edit math expression (LaTeX)"
+          title="Edit LaTeX"
+          placeholder="LaTeX..."
           value={editValue}
           onChange={(e) => setEditValue(e.target.value)}
           onBlur={() => commit(editValue)}
