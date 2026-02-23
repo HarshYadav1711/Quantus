@@ -1,6 +1,7 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { FORMAT_TEXT_COMMAND } from 'lexical'
 import type { TextFormatType } from 'lexical'
+import { insertBlockMath, insertInlineMath } from '@/editor/math'
 import { insertTable } from '@/editor/table'
 import { useUIStore, type ToolbarFormat } from '@/store'
 
@@ -40,6 +41,20 @@ export function EditorToolbar() {
         title="Insert table"
       >
         Table
+      </button>
+      <button
+        type="button"
+        onClick={() => insertInlineMath(editor)}
+        title="Insert inline math"
+      >
+        Inline math
+      </button>
+      <button
+        type="button"
+        onClick={() => insertBlockMath(editor)}
+        title="Insert block math"
+      >
+        Block math
       </button>
     </div>
   )
