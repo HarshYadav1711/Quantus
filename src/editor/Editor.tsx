@@ -6,7 +6,7 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin'
 import { EditorToolbar } from '@/components'
 import { editorConfig } from './editorConfig'
-import { EditorSyncPlugin, SelectionFormatPlugin } from './plugins'
+import { EditorFocusPlugin, EditorSyncPlugin, SelectionFormatPlugin } from './plugins'
 import './editor.css'
 
 /** Composes Lexical with config and plugins. No config or DOM logic here. */
@@ -22,6 +22,8 @@ export function Editor() {
         />
         <HistoryPlugin />
         <TablePlugin />
+        {/* Plugins own behavior and side effects (sync, selection → format, focus); UI only reads store and invokes commands. */}
+        <EditorFocusPlugin />
         <EditorSyncPlugin />
         <SelectionFormatPlugin />
       </div>

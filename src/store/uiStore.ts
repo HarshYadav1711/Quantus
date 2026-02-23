@@ -17,15 +17,19 @@ const defaultFormat: ToolbarFormat = {
 
 type UIStore = {
   format: ToolbarFormat
+  editorFocused: boolean
   setFormat: (partial: Partial<ToolbarFormat>) => void
+  setEditorFocused: (focused: boolean) => void
   resetFormat: () => void
 }
 
 export const useUIStore = create<UIStore>((set) => ({
   format: defaultFormat,
+  editorFocused: false,
   setFormat: (partial) =>
     set((state) => ({
       format: { ...state.format, ...partial },
     })),
+  setEditorFocused: (focused) => set({ editorFocused: focused }),
   resetFormat: () => set({ format: defaultFormat }),
 }))

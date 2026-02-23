@@ -3,6 +3,13 @@ import { DecoratorNode } from 'lexical'
 import { createElement, type ReactElement } from 'react'
 import { MathDecorator } from './MathDecorator'
 
+/** DOM element Lexical uses as the mount for this decorator; React content is rendered via decorate(). */
+function createMathDOM(displayMode: boolean): HTMLElement {
+  const el = document.createElement(displayMode ? 'div' : 'span')
+  el.className = 'math-node'
+  return el
+}
+
 export type SerializedMathNode = {
   type: 'math'
   version: 1
@@ -61,6 +68,18 @@ export class MathNode extends DecoratorNode<ReactElement> {
 
   static importJSON(serialized: SerializedMathNode): MathNode {
     return new MathNode(serialized.latex ?? '', serialized.displayMode ?? false)
+  }
+
+  createDOM(_config: EditorConfig): HTMLElement {
+    return createMathDOM(this.getLatest().__displayMode)
+  }
+
+  updateDOM(
+    prevNode: MathNode,
+    _dom: HTMLElement,
+    _config: EditorConfig
+  ): boolean {
+    return prevNode.__displayMode !== this.__displayMode
   }
 
   decorate(_editor: LexicalEditor, _config: EditorConfig): ReactElement {

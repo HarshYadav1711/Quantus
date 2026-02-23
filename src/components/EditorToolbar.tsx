@@ -10,6 +10,7 @@ import { useUIStore } from '@/store'
 export function EditorToolbar() {
   const [editor] = useLexicalComposerContext()
   const format = useUIStore((s) => s.format)
+  const editorFocused = useUIStore((s) => s.editorFocused)
 
   return (
     <div className="editor-toolbar" role="toolbar">
@@ -19,6 +20,7 @@ export function EditorToolbar() {
             key={key}
             type="button"
             aria-pressed="true"
+            disabled={!editorFocused}
             onClick={() => applyFormat(editor, key)}
           >
             {label}
@@ -28,6 +30,7 @@ export function EditorToolbar() {
             key={key}
             type="button"
             aria-pressed="false"
+            disabled={!editorFocused}
             onClick={() => applyFormat(editor, key)}
           >
             {label}
@@ -40,6 +43,7 @@ export function EditorToolbar() {
           key={id}
           type="button"
           title={title}
+          disabled={!editorFocused}
           onClick={() => run(editor)}
         >
           {label}

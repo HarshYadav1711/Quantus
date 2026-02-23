@@ -11,6 +11,8 @@ React 18 + Vite + TypeScript. Lexical-based editor with tables, math (LaTeX/KaTe
 
 ## Architecture and state
 
+The layout follows the same separation you’d see in a production editor: all editor logic and state live under the editor and plugins; the UI only reflects state and triggers commands. That keeps the toolbar and page components thin and testable.
+
 - **Editor state lives in Lexical.** The app does not keep a duplicate tree in React or Zustand. What you see in the editor is the single source of truth.
 - **Zustand has two roles:**
   - **Editor store**: Holds a debounced serialized snapshot (JSON string) and a one-shot “content to hydrate” slot. Used for persistence and for initial load. No component subscribes to the serialized string, so typing does not trigger re-renders. The sync plugin writes into the store and calls the persistence adapter.
