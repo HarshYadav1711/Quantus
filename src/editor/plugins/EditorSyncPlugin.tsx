@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useEditorStore } from '@/store/editorStore'
+import { savePersistedContent } from '@/persistence'
 
 const SERIALIZE_DEBOUNCE_MS = 400
 
@@ -32,7 +33,9 @@ export function EditorSyncPlugin() {
       if (debounceRef.current) clearTimeout(debounceRef.current)
       debounceRef.current = setTimeout(() => {
         const json = editorState.toJSON()
-        setSerializedContent(JSON.stringify(json))
+        const serialized = JSON.stringify(json)
+        setSerializedContent(serialized)
+        void savePersistedContent(serialized)
         debounceRef.current = null
       }, SERIALIZE_DEBOUNCE_MS)
     })
