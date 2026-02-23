@@ -1,6 +1,7 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { FORMAT_TEXT_COMMAND } from 'lexical'
 import type { TextFormatType } from 'lexical'
+import { insertTable } from '@/editor/table'
 import { useUIStore, type ToolbarFormat } from '@/store'
 
 const FORMATS: { key: keyof ToolbarFormat; label: string }[] = [
@@ -32,6 +33,14 @@ export function EditorToolbar() {
           {label}
         </button>
       ))}
+      <span className="editor-toolbar-separator" aria-hidden />
+      <button
+        type="button"
+        onClick={() => insertTable(editor)}
+        title="Insert table"
+      >
+        Table
+      </button>
     </div>
   )
 }

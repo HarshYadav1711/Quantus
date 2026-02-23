@@ -8,4 +8,9 @@ export const editorTheme: EditorThemeClasses = {
     underline: 'editor-text-underline',
     code: 'editor-text-code',
   },
+  table: 'editor-table',
+  tableCell: 'editor-table-cell',
+  tableCellHeader: 'editor-table-cell-header',
+  tableRow: 'editor-table-row',
+  tableScrollableWrapper: 'editor-table-scrollable',
 }

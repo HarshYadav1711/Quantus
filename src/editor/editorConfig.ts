@@ -9,6 +9,7 @@ import {
   TabNode,
 } from 'lexical'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
+import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import type { InitialConfigType } from '@lexical/react/LexicalComposer'
 import { editorTheme } from './theme'
 
@@ -36,6 +37,9 @@ const editorNodes = [
   TabNode,
   HeadingNode,
   QuoteNode,
+  TableNode,
+  TableRowNode,
+  TableCellNode,
 ]
 
 /**

@@ -3,6 +3,7 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin'
 import { EditorToolbar } from '@/components'
 import { editorConfig } from './editorConfig'
 import { EditorSyncPlugin, InitialStatePlugin, SelectionFormatPlugin } from './plugins'
@@ -23,6 +24,7 @@ export function Editor() {
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
+        <TablePlugin />
         <InitialStatePlugin />
         <EditorSyncPlugin />
         <SelectionFormatPlugin />
